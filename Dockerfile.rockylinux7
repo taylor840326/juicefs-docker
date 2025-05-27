@@ -11,7 +11,8 @@ RUN set -eux; \
 
 RUN set -eux; \
 	rpm --import 'https://mirrors.tuna.tsinghua.edu.cn/ceph/keys/release.asc'; \
-	yum install -y wget epel-release librados2 fuse;
+	yum install -y wget epel-release ; \
+	yum install -y librados2 fuse;
 
 FROM base as build
 
