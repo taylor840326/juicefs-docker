@@ -40,6 +40,15 @@ ubuntu-24.04:
 		.
 	sed -i -e 's/24.04/22.04/g' $(DOCKER_FILE)
 
+.PHONY: rockylinux-7
+rockylinux-7:
+	docker build \
+		-t $(IMAGE):$(TAG)-rockylinux-7 \
+		-t $(IMAGE):latest \
+		-f $(DOCKER_FILE).rockylinux7 \
+		.
+
+
 .PHONY: rockylinux-8
 rockylinux-8:
 	docker build \
