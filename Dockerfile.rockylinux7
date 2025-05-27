@@ -3,6 +3,13 @@ FROM centos:7 as base
 ADD ceph.repo.7 /etc/yum.repos.d/ceph.repo
 
 RUN set -eux; \
+    sed -e "s|^mirrorlist=|#mirrorlist=|g" \
+    -e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos-vault/7.9.2009|g" \
+    -e "s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos-vault/7.9.2009|g" \
+    -i.bak \
+    /etc/yum.repos.d/CentOS-*.repo
+
+RUN set -eux; \
 	rpm --import 'https://mirrors.tuna.tsinghua.edu.cn/ceph/keys/release.asc'; \
 	yum install -y wget librados2 fuse;
 
