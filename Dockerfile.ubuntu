@@ -1,8 +1,8 @@
-FROM ubuntu:24.04 as base
+FROM ubuntu:22.04 as base
 
 RUN set -eux; \
 	apt update; \
-	apt install -y librados2 fuse; \
+	apt install -y wget librados2 fuse; \
 	rm -rf /var/lib/apt/lists/*
 
 FROM base as build

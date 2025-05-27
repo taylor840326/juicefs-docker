@@ -14,32 +14,34 @@ image:
 
 .PHONY: squid-ubuntu-2004
 squid-ubuntu-2004:
+	sed -i -e 's/22.04/20.04/g' $(DOCKER_FILE)
 	docker build \
+		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG) \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE) \
 		.
-	sed -i 's/debian-squid/debian-reef/g' Dockerfile
+	sed -i -e 's/20.04/22.04/g' $(DOCKER_FILE)
 
 .PHONY: squid-ubuntu-2204
 squid-ubuntu-2204:
-	sed -i -e 's/22.04/20.04/g' $(DOCKER_FILE)
 	docker build \
+		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG) \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE) \
 		.
-	sed -i 's/debian-squid/debian-reef/g' Dockerfile
 
 .PHONY: squid-ubuntu-2404
 squid-ubuntu-2404:
 	sed -i -e 's/22.04/24.04/g' $(DOCKER_FILE)
 	docker build \
+		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG) \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE) \
 		.
-	sed -i -e 's/24.04/22.04/g' -e 's/debian-squid/debian-reef/g' Dockerfile
+	sed -i -e 's/24.04/22.04/g' $(DOCKER_FILE)
 
 
 
