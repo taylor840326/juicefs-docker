@@ -1,4 +1,4 @@
-FROM rockylinux:8 as base
+FROM rockylinux:9 as base
 
 RUN set -eux; \
 	dnf install -y wget librados2 fuse;

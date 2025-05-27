@@ -45,9 +45,16 @@ rockylinux-8:
 	docker build \
 		-t $(IMAGE):$(TAG)-rockylinux-8 \
 		-t $(IMAGE):latest \
-		-f $(DOCKER_FILE).rockylinux \
+		-f $(DOCKER_FILE).rockylinux8 \
 		.
 
+.PHONY: rockylinux-9
+rockylinux-9:
+	docker build \
+		-t $(IMAGE):$(TAG)-rockylinux-9 \
+		-t $(IMAGE):latest \
+		-f $(DOCKER_FILE).rockylinux9 \
+		.
 
 
 .PHONY: push
