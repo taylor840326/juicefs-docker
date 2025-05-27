@@ -4,7 +4,7 @@ ADD ceph.repo.7 /etc/yum.repos.d/ceph.repo
 
 RUN set -eux; \
 	rpm --import 'https://mirrors.tuna.tsinghua.edu.cn/ceph/keys/release.asc'; \
-	dnf install -y wget librados2 fuse;
+	yum install -y wget librados2 fuse;
 
 FROM base as build
 
@@ -16,7 +16,7 @@ ENV JFSVERSION=v1.2.0
 WORKDIR /tmp
 
 RUN set -eux; \
-	dnf install -y --enablerepo=devel librados-devel make gcc; \
+	yum install -y --enablerepo=devel librados-devel make gcc; \
 	wget https://go.dev/dl/${GOVERSION}.linux-amd64.tar.gz; \
 	tar -C /usr/local -xzf ${GOVERSION}.linux-amd64.tar.gz; \
 	wget https://github.com/juicedata/juicefs/archive/refs/tags/${JFSVERSION}.tar.gz; \
