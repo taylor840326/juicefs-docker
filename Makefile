@@ -41,11 +41,11 @@ ubuntu-24.04:
 	sed -i -e 's/24.04/22.04/g' $(DOCKER_FILE)
 
 .PHONY: centos-7
-rockylinux-7:
+centos-7:
 	docker build \
-		-t $(IMAGE):$(TAG)-rockylinux-7 \
+		-t $(IMAGE):$(TAG)-centos-7 \
 		-t $(IMAGE):latest \
-		-f $(DOCKER_FILE).rockylinux7 \
+		-f $(DOCKER_FILE).centos7 \
 		.
 
 
