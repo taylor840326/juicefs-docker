@@ -1,0 +1,29 @@
+FROM rockylinux:8 as base
+
+RUN set -eux; \
+	dnf install -y wget librados2 fuse;
+
+FROM base as build
+
+ENV GOPROXY=https://goproxy.cn
+ENV PATH /usr/local/go/bin:$PATH
+ENV GOVERSION=go1.22.5
+ENV JFSVERSION=v1.2.0
+
+WORKDIR /tmp
+
+RUN set -eux; \
+	dnf install -y --enablerepo=devel librados-devel make gcc; \
+	wget https://go.dev/dl/${GOVERSION}.linux-amd64.tar.gz; \
+	tar -C /usr/local -xzf ${GOVERSION}.linux-amd64.tar.gz; \
+	wget https://github.com/juicedata/juicefs/archive/refs/tags/${JFSVERSION}.tar.gz; \
+	mkdir /usr/local/jfs; \
+	tar -C /usr/local/jfs -xzf ${JFSVERSION}.tar.gz --strip-components 1; \
+	cd /usr/local/jfs; \
+	make juicefs.ceph
+
+FROM base
+
+COPY --from=build /usr/local/jfs/juicefs.ceph /usr/local/bin/juicefs
+
+ENTRYPOINT ["/usr/local/bin/juicefs"]
