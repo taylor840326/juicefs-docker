@@ -1,4 +1,4 @@
-FROM rockylinux:8 as base
+FROM centos:7 as base
 
 ADD ceph.repo.7 /etc/yum.repos.d/ceph.repo
 
