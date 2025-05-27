@@ -16,7 +16,6 @@ image:
 ubuntu-20.04:
 	sed -i -e 's/22.04/20.04/g' $(DOCKER_FILE)
 	docker build \
-		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG)-ubuntu-20.04 \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE).ubuntu \
@@ -26,7 +25,6 @@ ubuntu-20.04:
 .PHONY: ubuntu-22.04
 ubuntu-22.04:
 	docker build \
-		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG)-ubuntu-22.04 \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE).ubuntu \
@@ -36,7 +34,6 @@ ubuntu-22.04:
 ubuntu-24.04:
 	sed -i -e 's/22.04/24.04/g' $(DOCKER_FILE)
 	docker build \
-		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG)-ubuntu-24.04 \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE).ubuntu \
@@ -46,7 +43,6 @@ ubuntu-24.04:
 .PHONY: rockylinux-8
 rockylinux-8:
 	docker build \
-		--build-arg "https_proxy=http://Clash:pHSyKiPM@172.18.3.199:7890" \
 		-t $(IMAGE):$(TAG)-rockylinux-8 \
 		-t $(IMAGE):latest \
 		-f $(DOCKER_FILE).rockylinux \
