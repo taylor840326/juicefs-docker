@@ -24,7 +24,7 @@ ENV JFSVERSION=v1.2.0
 WORKDIR /tmp
 
 RUN set -eux; \
-	yum install -y --enablerepo=devel librados-devel make gcc; \
+	yum install -y librados-devel make gcc; \
 	wget https://go.dev/dl/${GOVERSION}.linux-amd64.tar.gz; \
 	tar -C /usr/local -xzf ${GOVERSION}.linux-amd64.tar.gz; \
 	wget https://github.com/juicedata/juicefs/archive/refs/tags/${JFSVERSION}.tar.gz; \
