@@ -1,6 +1,6 @@
 FROM rockylinux:8 as base
 
-ADD ceph.repo.8 /etc/yum.repos.d/ceph.repo
+ADD ceph.repo.7 /etc/yum.repos.d/ceph.repo
 
 RUN set -eux; \
 	rpm --import 'https://mirrors.tuna.tsinghua.edu.cn/ceph/keys/release.asc'; \
